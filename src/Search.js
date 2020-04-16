@@ -9,7 +9,7 @@ function Search({ setCityInfos, setError, setLoading }) {
 
         try {
             setLoading(true)
-            let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
             console.log(response)
             // to prevent old error showing on the screen
             setError('')
