@@ -19,7 +19,7 @@ function Search({ setCitiesInfos, setError, setLoading }) {
             // if (response.status === 404) { throw new Error("City or country not found") }
             let res = await response.json()
             setLoading(false)
-            setCitiesInfos(old => [...old, res])
+            setCitiesInfos(old => [res, ...old])
         } catch (e) {
             console.log(e.message)
             setError(e.message)
