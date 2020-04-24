@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Search({ setCityInfos, setError, setLoading }) {
+function Search({ setCitiesInfos, setError, setLoading }) {
 
     const [city, setCity] = useState('');
 
@@ -9,24 +9,24 @@ function Search({ setCityInfos, setError, setLoading }) {
 
         try {
             setLoading(true)
-            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
             console.log(response)
             // to prevent old error showing on the screen
             setError('')
             // to check entering correct city or country name.
             // I want to know If there is a optimal way to make a feedback after entering wrong city name
-            if (response.status === 404) { throw new Error("City or country not found") }
+            if (!response.ok) { throw Error("City or country not found") }
+            // if (response.status === 404) { throw new Error("City or country not found") }
             let res = await response.json()
             setLoading(false)
-            setCityInfos(res)
+            setCitiesInfos(old => [...old, res])
         } catch (e) {
-            console.log(e.name)
+            console.log(e.message)
             setError(e.message)
             setLoading(false)
         }
     }
     const handleSubmit = (e) => {
-        setCityInfos('')
         e.preventDefault();
         if (!city) return;
         getCity();
