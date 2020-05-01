@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import './App.css';
 import CityCard from './CityCard';
-import Search from './Search'
-
+import Search from './Search';
+import CityChart from './CityChart'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 
 function App() {
   const [citiesInfos, setCitiesInfos] = useState([]);
@@ -17,21 +23,33 @@ function App() {
 
     //second way
     const cities = [...citiesInfos];
-    const newCities = cities.filter((city) => city.id !== index);
+    const newCities = cities.filter((cityInf) => cityInf.city.id !== index);
     setCitiesInfos(newCities)
-
   }
 
   return (
-    <div className="App">
-      <h1>Weather</h1>
-      {isLoading && <h1 style={{ color: 'lightblue', margin: '3px' }} >Loading...</h1>}
-      <Search setCitiesInfos={setCitiesInfos} setError={setError} setLoading={setLoading} />
-      <h1 style={{ color: 'red', margin: '5px' }} >{hasError}</h1>
-      {citiesInfos.length > 0 ? citiesInfos.map((cityInf, index) => (
-        <CityCard key={index} index={index} removeCity={removeCity} cityInf={cityInf} />
-      )) : <p>Enter a City or Country</p>}
-    </div>
+    <Router>
+      <div className="App">
+
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to='/home' />
+          </Route>
+          <Route path="/home" exact>
+            <h1 style={{ color: 'lightblue', margin: '25px' }}>HYF Weather App</h1>
+            {isLoading && <h1 style={{ color: 'lightblue', margin: '3px' }} >Loading...</h1>}
+            <Search setCitiesInfos={setCitiesInfos} setError={setError} setLoading={setLoading} />
+            <h1 style={{ color: 'red', margin: '5px' }} >{hasError}</h1>
+            {citiesInfos.length > 0 && citiesInfos.map((cityInf, index) => (
+              <CityCard key={cityInf.city.id} index={index} removeCity={removeCity} cityInf={cityInf} />
+            ))}
+          </Route>
+          <Route path="/:cityId" >
+            <CityChart citiesInfos={citiesInfos} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

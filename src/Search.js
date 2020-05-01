@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 function Search({ setCitiesInfos, setError, setLoading }) {
 
@@ -9,7 +9,7 @@ function Search({ setCitiesInfos, setError, setLoading }) {
 
         try {
             setLoading(true)
-            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`);
             console.log(response)
             // to prevent old error showing on the screen
             setError('')
@@ -19,6 +19,7 @@ function Search({ setCitiesInfos, setError, setLoading }) {
             // if (response.status === 404) { throw new Error("City or country not found") }
             let res = await response.json()
             setLoading(false)
+            //to see last searched city on page
             setCitiesInfos(old => [res, ...old])
         } catch (e) {
             console.log(e.message)
@@ -36,12 +37,14 @@ function Search({ setCitiesInfos, setError, setLoading }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text" className='input'
+                <input style={{ width: '20%', height: '30px' }} type="text" className='input'
                     //Do we have to use value={city} in here, without value={city} it is working as well
                     value={city}
                     placeholder='Search City'
                     onChange={e => setCity(e.target.value)} />
-                <button >Search</button>
+                <button style={{ margin: '10px', width: '70px', height: '30px' }} >Search</button>
+
+                {!city && <p>Enter a City or Country</p>}
             </form>
         </div>
     )
