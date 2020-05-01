@@ -9,7 +9,6 @@ import {
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
 } from 'recharts';
 
-// const { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } = Recharts;
 
 function CityChart({ citiesInfos }) {
     const { cityId } = useParams();

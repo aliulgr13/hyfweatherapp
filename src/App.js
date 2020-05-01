@@ -40,9 +40,10 @@ function App() {
             {isLoading && <h1 style={{ color: 'lightblue', margin: '3px' }} >Loading...</h1>}
             <Search setCitiesInfos={setCitiesInfos} setError={setError} setLoading={setLoading} />
             <h1 style={{ color: 'red', margin: '5px' }} >{hasError}</h1>
-            {citiesInfos.length > 0 && citiesInfos.map((cityInf, index) => (
-              <CityCard key={cityInf.city.id} index={index} removeCity={removeCity} cityInf={cityInf} />
-            ))}
+            {citiesInfos.length > 0 ? citiesInfos.map((cityInf, index) => (
+              <CityCard key={cityInf.city.id} index={index} removeCity={removeCity} cityInf={cityInf} />)) :
+              <p>Enter a City or Country</p>
+            }
           </Route>
           <Route path="/:cityId" >
             <CityChart citiesInfos={citiesInfos} />

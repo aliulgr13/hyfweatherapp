@@ -44,7 +44,6 @@ function Search({ setCitiesInfos, setError, setLoading }) {
                     onChange={e => setCity(e.target.value)} />
                 <button style={{ margin: '10px', width: '70px', height: '30px' }} >Search</button>
 
-                {!city && <p>Enter a City or Country</p>}
             </form>
         </div>
     )
