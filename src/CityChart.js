@@ -60,15 +60,15 @@ function CityChart({ citiesInfos }) {
         history.goBack();
     }
     return (
-        <div style={{ width: '60%', margin: ' 50px auto', textAlign: 'center' }}>
-            <div style={{ color: 'rgb(230, 176, 16)', fontWeight: 'bold', margin: '20px', fontSize: '40px' }}>5 Day Forecast</div>
+        <div style={{ width: '700px', margin: ' 0 auto', textAlign: 'center' }}>
+        <h1 style={{ color: '#f0a500',textShadow: '-3px 0 #cf7500, 0 3px #cf7500, 3px 0 #cf7500, 0 -3px #cf7500', fontSize: '50px',fontWeight: 'bold' }}>5 DAY FORECAST</h1>
             <Link style={{ textDecoration: 'none' }} to={'/home'} >
-                <button style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: '#FF5733', margin: '20px', }} >Home</button>
+                <button>Home</button>
             </Link >
-            <button onClick={goBack} style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: '#FF5733', margin: '20px' }} >Go Back</button>
-            {nextCity && <Link to={`/${nextCity && nextCity.city.id}`} ><button style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: '#FF5733', margin: '20px', }}>Next City</button></Link >}
-            <h1 style={{ color: 'rgb(38, 50, 91)', fontSize: '50px', letterSpacing: '10px', textTransform: 'uppercase' }}>{cityInfos && cityInfos.city.name}</h1>
-            <div style={{ backgroundColor: 'rgba(256,256,256,0.6)', padding: '10px', width: '600px', margin: '20px auto' }}>
+            <button onClick={goBack}>Go Back</button>
+            {nextCity && <Link to={`/${nextCity && nextCity.city.id}`} ><button>Next City</button></Link >}
+            <h1 style={{ color: '#0764D3',textShadow: '-2px 0 #1f4068, 0 2px #1f4068, 2px 0 #1f4068, 0 -2px #1f4068', fontSize: '50px', letterSpacing: '5px', textTransform: 'uppercase' }}>{cityInfos && cityInfos.city.name}</h1>
+            <div style={{ backgroundColor: 'rgba(256,256,256,0.7)',margin:'0 20px' }}>
                 {cityInfos && <SimpleAreaChart />}
             </div>
 

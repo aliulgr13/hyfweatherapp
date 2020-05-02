@@ -1,9 +1,12 @@
 body {
-  background-image: url("https://cdn.pixabay.com/photo/2015/05/29/16/36/seamless-tiling-clouds-789451_960_720.jpg");
-
+  background-image: url("https://static.brusheezy.com/system/resources/premium_previews/000/053/710/non_2x/chalk-drawn-weather-icons-psd-set-photoshop-psds.jpg");
   background-repeat: repeat;
 }
 .App {
+  width:700px;
+  padding-bottom:20px;
+  margin:50px auto;
+  background-color:rgba(255, 255, 255, 0.5);
   text-align: center;
 }
 
@@ -11,14 +14,14 @@ body {
   position: relative;
   width: 400px;
   border: 1px solid black;
-  margin: 20px 35%;
+  margin: 10px auto;
   text-align: left;
-  padding: 5px 30px;
+  padding: 5px 20px;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 2px;
-  background-color: rgba(245, 246, 248, 0.24);
-  color: rgb(38, 50, 91);
+  background-color: rgba(38,38,38, 0.9);
+  color: white;
 }
 h1 {
   font-weight: bold;
@@ -31,6 +34,18 @@ h3 {
   font-weight: bold;
 }
 
-svg {
-  color: red !important;
+button {
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 8px 12px;
+  background-color: #286090;
+  border: none;
+  color: white;
+  font-size: 1.4em;
+  margin:20px;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
 }

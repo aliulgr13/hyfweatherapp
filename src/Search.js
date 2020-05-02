@@ -37,12 +37,12 @@ function Search({ setCitiesInfos, setError, setLoading }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input style={{ width: '20%', height: '30px' }} type="text" className='input'
+                <input style={{ width: '70%', height: '30px', padding:'8px 12px',fontSize : '1.2em' }} type="text" className='input'
                     //Do we have to use value={city} in here, without value={city} it is working as well
                     value={city}
                     placeholder='Search City'
                     onChange={e => setCity(e.target.value)} />
-                <button style={{ margin: '10px', width: '70px', height: '30px' }} >Search</button>
+                <button>Search</button>
 
             </form>
         </div>
