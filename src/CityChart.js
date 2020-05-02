@@ -15,9 +15,22 @@ function CityChart({ citiesInfos }) {
     const history = useHistory()
     console.log(cityId)
 
-    const cityInfos = citiesInfos.find(cityInf => cityInf.city.id === parseInt(cityId, 10));
+    // to show infos of sibling element in the array 
+    function nextCityFinder(index) {
+        return citiesInfos[index];
+    }
+    let nextCity;
+
+    //to find and write the selected city
+    const cityInfos = citiesInfos.find((cityInf, index) => {
+        if (cityInf.city.id === parseInt(cityId, 10)) {
+            nextCity = nextCityFinder(index + 1)
+            return cityInf
+        }
+    });
     console.log(cityInfos)
     let data;
+
     if (cityInfos) {
         data = [
             { Date: new Date(cityInfos.list[0].dt_txt).toLocaleDateString(), Temp: cityInfos.list[0].main.temp },
@@ -43,17 +56,19 @@ function CityChart({ citiesInfos }) {
         );
     }
 
-    const handleClick = () => {
+    const goBack = () => {
         history.goBack();
     }
     return (
         <div style={{ width: '60%', margin: ' 50px auto', textAlign: 'center' }}>
-            <div style={{ color: 'coral', fontWeight: 'bold', margin: '20px', fontSize: '40px' }}>5 Day Forecast</div>
+            <div style={{ color: 'rgb(230, 176, 16)', fontWeight: 'bold', margin: '20px', fontSize: '40px' }}>5 Day Forecast</div>
             <Link style={{ textDecoration: 'none' }} to={'/home'} >
-                <button style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: 'blue', margin: '20px', }} >Home</button>
+                <button style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: '#FF5733', margin: '20px', }} >Home</button>
             </Link >
-            <button onClick={handleClick} style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: 'blue', margin: '20px', }} >Go Back</button>
-            <div style={{ width: '600px', margin: '20px auto' }}>
+            <button onClick={goBack} style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: '#FF5733', margin: '20px' }} >Go Back</button>
+            {nextCity && <Link to={`/${nextCity && nextCity.city.id}`} ><button style={{ witdh: '200px', fontSize: '30px', color: 'white', backgroundColor: '#FF5733', margin: '20px', }}>Next City</button></Link >}
+            <h1 style={{ color: 'rgb(38, 50, 91)', fontSize: '50px', letterSpacing: '10px', textTransform: 'uppercase' }}>{cityInfos && cityInfos.city.name}</h1>
+            <div style={{ backgroundColor: 'rgba(256,256,256,0.6)', padding: '10px', width: '600px', margin: '20px auto' }}>
                 {cityInfos && <SimpleAreaChart />}
             </div>
 

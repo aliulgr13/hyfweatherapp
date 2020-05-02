@@ -9,10 +9,13 @@ function CityCard({ cityInf, index, removeCity }) {
 
         <div className="card">
             <button onClick={() => removeCity(cityInf.city.id)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', color: 'red', fontSize: '35px', position: 'absolute', top: '3px', right: '2px' }}><i className="far fa-times-circle"></i></button>
-            <Link to={`/${cityInf.city.id}`} >
-                <h1>{cityInf.city.name}, {cityInf.city.country}</h1>
-            </Link >
-            <h2>{cityInf.list[0].weather[0].main}</h2>
+            <h1>
+                <Link to={`/${cityInf.city.id}`} >{cityInf.city.name}, {cityInf.city.country}</Link >
+            </h1>
+            <div style={{ display: 'flex', justifyItems: 'spaceBetween' }}>
+                <h1>{cityInf.list[0].weather[0].main}</h1>
+                <img style={{ width: '20%', marginLeft: '50px' }} src={`http://openweathermap.org/img/wn/${cityInf.list[0].weather[0].icon}@2x.png`} />
+            </div>
             <h3>{cityInf.list[0].weather[0].description}</h3>
             <h3>min temp: {cityInf.list[0].main.temp_min} °C</h3>
             <h3>max temp:  {cityInf.list[0].main.temp_max} °C</h3>

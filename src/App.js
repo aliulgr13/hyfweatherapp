@@ -36,13 +36,13 @@ function App() {
             <Redirect to='/home' />
           </Route>
           <Route path="/home" exact>
-            <h1 style={{ color: 'lightblue', margin: '25px' }}>HYF Weather App</h1>
+            <h1 style={{ color: 'rgb(230, 176, 16)', fontSize: '50px', margin: '25px' }}>HYF Weather App</h1>
             {isLoading && <h1 style={{ color: 'lightblue', margin: '3px' }} >Loading...</h1>}
             <Search setCitiesInfos={setCitiesInfos} setError={setError} setLoading={setLoading} />
             <h1 style={{ color: 'red', margin: '5px' }} >{hasError}</h1>
             {citiesInfos.length > 0 ? citiesInfos.map((cityInf, index) => (
               <CityCard key={cityInf.city.id} index={index} removeCity={removeCity} cityInf={cityInf} />)) :
-              <p>Enter a City or Country</p>
+              <h3 style={{ color: '#000080', fontSize: '30px', fontWeight: 'bold' }}>You Can Enter More Than One City</h3>
             }
           </Route>
           <Route path="/:cityId" >
