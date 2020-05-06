@@ -47,7 +47,13 @@ function App() {
               HYF WEATHER APP
             </h1>
             {isLoading && (
-              <h1 style={{ color: "lightblue", margin: "5px" }}>
+              <h1
+                style={{
+                  color: "#0764D3",
+                  margin: "5px auto",
+                  width: "200px",
+                }}
+              >
                 <i className="fa fa-cog fa-spin" />
               </h1>
             )}
